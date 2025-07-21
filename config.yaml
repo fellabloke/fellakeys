@@ -1,0 +1,129 @@
+points:
+  zones:
+    matrix:
+      columns:
+        pinky:
+          key:
+            width: 1.5u
+            bind: [0, 105, 0, 0]
+            column_net: P020
+            origin: [-u/2, -u/2]
+        ring:
+          key:
+            width: u
+            spread: 1.3u
+            column_net: P022
+        middle:
+          key:
+            width: u
+            spread: 1.05u
+            column_net: P024
+        index:
+          key:
+            width: u
+            spread: 1.05u
+            column_net: P100
+        inner:
+          key:
+            spread: 1.05u
+            width: u
+            column_net: P011
+          rows: 
+            bottombottom:
+              skip: true
+        innerinner:
+          key:
+            spread: 1.025u
+            column_net: P017
+          rows: 
+            bottombottom:
+              skip: true
+      rows:
+        bottombottom: 
+          shift: [-4.9425U, 0]
+          row_net: P113
+        bottom: 
+          row_net: P115
+        home: 
+          row_net: P002
+        top: 
+          row_net: P029
+        num: 
+          row_net: P031
+        fn:
+          row_net: P006
+      anchor:
+        shift: [200, -200]
+    thumbs:
+      key:
+        width: 2U
+        row_net: P009
+      anchor:
+        shift: [200, -200]
+
+outlines:
+  left: 
+  - where: true
+    bound: true
+    what: rectangle
+    size: [U + 4, U + 4]
+
+pcbs: 
+  left:
+    outlines:
+      main:
+        outline: left
+    footprints: 
+      keyswitches:
+        where: true
+        what: choc 
+        params: 
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diodes:
+        what: diode
+        where: true
+        params: 
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust: 
+          shift: [1.8, -5.5]
+      nice_nano:
+        what: nice_nano
+        params:
+         orientation: up
+        where:
+          ref: matrix_innerinner_fn
+          rotate: -180
+      jstph:
+        what: jstph
+        where:
+          ref: matrix_pinky_fn
+          shift: [-7, 5.5]
+          rotate: -90
+        params:
+            side: B
+            pos: pos
+            neg: GND   
+      battery_switch:
+        what: slider
+        where:
+            ref: matrix_pinky_fn
+            shift: [-9.5, -6.0]
+            rotate: 90
+        params:
+            side: B
+            from: pos
+            to: RAW
+      horizontal_reset:
+        what: EVQPUC
+        params: 
+          side: B
+          from: GND
+          to: RST 
+        where:
+          ref: matrix_pinky_fn
+          shift: [-9.5,-15.0]
+          rotate: 90.0
+           
