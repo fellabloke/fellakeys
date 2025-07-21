@@ -6,58 +6,59 @@ points:
           key:
             width: 1.5u
             bind: [0, 105, 0, 0]
-            column_net: P020
+            column_net: P008
             origin: [-u/2, -u/2]
         ring:
           key:
             width: u
             spread: 1.3u
-            column_net: P022
+            column_net: P002
         middle:
           key:
             width: u
             spread: 1.05u
-            column_net: P024
+            column_net: P115
         index:
           key:
             width: u
             spread: 1.05u
-            column_net: P100
+            column_net: P113
         inner:
           key:
             spread: 1.05u
             width: u
-            column_net: P011
+            column_net: P111
           rows: 
             bottombottom:
               skip: true
         innerinner:
           key:
             spread: 1.025u
-            column_net: P017
+            column_net: P010
           rows: 
             bottombottom:
               skip: true
       rows:
         bottombottom: 
           shift: [-4.9425U, 0]
-          row_net: P113
+          row_net: P024
         bottom: 
-          row_net: P115
+          row_net: P100
         home: 
-          row_net: P002
+          row_net: P104
         top: 
-          row_net: P029
+          row_net: P017
         num: 
-          row_net: P031
+          row_net: P029
         fn:
-          row_net: P006
+          row_net: P031
       anchor:
         shift: [200, -200]
     thumbs:
       key:
         width: 2U
-        row_net: P009
+        row_net: P024
+        column_net: P010
       anchor:
         shift: [200, -200]
 
@@ -76,7 +77,7 @@ pcbs:
     footprints: 
       keyswitches:
         where: true
-        what: choc 
+        what: mx 
         params: 
           hotswap: true
           from: "{{column_net}}"
@@ -94,8 +95,9 @@ pcbs:
         params:
          orientation: up
         where:
-          ref: matrix_innerinner_fn
-          rotate: -180
+          ref: matrix_pinky_home
+        adjust:
+          shift: [5, 19]
       jstph:
         what: jstph
         where:
@@ -105,11 +107,11 @@ pcbs:
         params:
             side: B
             pos: pos
-            neg: GND   
+            neg: GND
       battery_switch:
         what: slider
         where:
-            ref: matrix_pinky_fn
+            ref: matrix_pinky_bottom
             shift: [-9.5, -6.0]
             rotate: 90
         params:
@@ -124,6 +126,6 @@ pcbs:
           to: RST 
         where:
           ref: matrix_pinky_fn
-          shift: [-9.5,-15.0]
+          shift: [-9.5,-17.5]
           rotate: 90.0
            
